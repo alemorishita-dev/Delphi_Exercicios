@@ -5,8 +5,8 @@ interface
 uses
   System.SysUtils,
   Domain.IExercicio,
-  Domain.Exercicio1;
-
+  Domain.Exercicio1,
+  Domain.Exercicio2;
 type
   TExercicioFactory = class
   public
@@ -24,16 +24,16 @@ begin
 
   if pNumeroExercicio = '1' then
     Result := TExercicio1.Create
-//  else if pNumeroExercicio = '2' then
-//    Result := TExercicio2.Create ();
-  ;
+  else if pNumeroExercicio = '2' then
+    Result := TExercicio2.Create ();
+
   if not Assigned(Result) then
     raise Exception.CreateFmt('Exercício "%s" não encontrado na Fábrica.', [pNumeroExercicio]);
 end;
 
 class function TExercicioFactory.Listar: TArray<string>;
 begin
-  Result := ['1']; // futuramente: ['1', '2', '3']
+  Result := ['1', '2'];
 end;
 
 end.

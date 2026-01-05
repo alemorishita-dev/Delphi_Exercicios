@@ -19,7 +19,7 @@ Repositório dedicado à resolução de desafios de algoritmos e fundamentos de 
 </details>
 
 <details>
-<summary><b>⚖️ 02. Validação de Condições Logicas</b></summary>
+<summary><b>⚖️ 02. Validação de Condições Lógicas</b></summary>
 <br>
 
 **Enunciado:** Receba 4 valores inteiros (A, B, C, D) e valide as seguintes condições:

@@ -5,38 +5,10 @@ program Delphi_Exercicios;
 {$R *.res}
 
 uses
-  System.SysUtils, Winapi.Windows,
+  System.SysUtils,
   Domain.IExercicio in 'src\Domain\Domain.IExercicio.pas',
-  Domain.Exercicio1 in 'src\Domain\Domain.Exercicio1.pas',
-  App.ExercicioFactory in 'src\App\App.ExercicioFactory.pas';
-
-procedure LimparTela;
-var
-  hConsole: THandle;
-  csbi: TConsoleScreenBufferInfo;
-  CellsWritten: DWORD;
-  ConsoleSize: DWORD;
-  HomeCoords: TCoord;
-begin
-  hConsole := GetStdHandle(STD_OUTPUT_HANDLE);
-  if hConsole = INVALID_HANDLE_VALUE then Exit;
-
-  GetConsoleScreenBufferInfo(hConsole, csbi);
-  ConsoleSize := csbi.dwSize.X * csbi.dwSize.Y;
-
-  HomeCoords.X := 0;
-  HomeCoords.Y := 0;
-
-  FillConsoleOutputCharacter(
-    hConsole,
-    ' ',
-    ConsoleSize,
-    HomeCoords,
-    CellsWritten
-  );
-
-  SetConsoleCursorPosition(hConsole, HomeCoords);
-end;
+  App.ExercicioFactory in 'src\App\App.ExercicioFactory.pas',
+  Utils.Console in 'src\Utils\Utils.Console.pas';
 
 procedure MostrarMenu;
 var
@@ -56,18 +28,18 @@ end;
 
 procedure ExecutarExercicio(const pNumeroExercicio: string);
 var
-  Exercicio: IExercicio;
+  lExercicio: IExercicio;
 begin
-  Exercicio := TExercicioFactory.Criar(pNumeroExercicio);
+  try
+    lExercicio := TExercicioFactory.Criar(pNumeroExercicio);
 
-  if not Assigned(Exercicio) then
-  begin
-    Writeln('Exercício não encontrado.');
-    Exit;
+    Writeln('>>> Exercício: ', lExercicio.Numero);
+    Writeln;
+    lExercicio.Executar;
+  except
+    on E: Exception do
+      Writeln('ERRO: ', E.Message);
   end;
-
-  Writeln('Iniciando Exercício: ', Exercicio.Numero);
-  Exercicio.Executar;
 end;
 
 var
@@ -75,14 +47,15 @@ var
 begin
   try
     repeat
-      LimparTela;
+      Utils.Console.LimparConsole;
+
       MostrarMenu;
       Readln(lNumeroExercicio);
 
       if lNumeroExercicio = '0' then
         Break;
 
-      LimparTela;
+      Utils.Console.LimparConsole;
 
       ExecutarExercicio(lNumeroExercicio);
 
@@ -92,7 +65,7 @@ begin
 
     until False;
 
-    LimparTela;
+    Utils.Console.LimparConsole;
     Writeln('Saindo, até a próxima!');
 
     Readln;

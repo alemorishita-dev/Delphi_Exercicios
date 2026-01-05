@@ -4,18 +4,19 @@ interface
 
 uses
   System.SysUtils,
+  Domain.ExercicioBase,
   Domain.IExercicio;
 
 type
-  TExercicio1 = class(TInterfacedObject, IExercicio)
+  TExercicio1 = class(TExercicioBase)
   private
     function CalcularSalarioBruto(pHorasPorDia, pDiasTrabalhados: Integer; pValorHora: Double): Double;
     function CalcularDesconto(pSalarioBruto: Double): Double;
     function CalcularSalarioLiquido(pSalarioBruto, pDesconto: Double): Double;
   public
-    procedure Executar();
+    procedure Executar(); override;
 
-    function Numero: string;
+    function Numero: string; override;
   end;
 
 implementation
@@ -44,26 +45,21 @@ var
 begin
   try
     try
-      Write('Digite a quantidade de horas trabalhadas por dia: ');
-      Readln(lHorasPorDia);
-
-      Write('Digite o valor da hora trabalhada: R$ ');
-      Readln(lValorHora);
-
-      Write('Digite a quantidade de dias trabalhados no mes: ');
-      Readln(lDiasTrabalhados);
+      lHorasPorDia     := LerInteiro('Digite a quantidade de horas trabalhadas por dia: ');
+      lValorHora       := LerDouble('Digite o valor da hora trabalhada: R$ ');
+      lDiasTrabalhados := LerInteiro('Digite a quantidade de dias trabalhados no mes: ');
 
       lSalarioBruto := CalcularSalarioBruto(lHorasPorDia, lDiasTrabalhados, lValorHora);
       lDesconto := CalcularDesconto(lSalarioBruto);
       lSalarioLiquido := CalcularSalarioLiquido(lSalarioBruto, lDesconto);
 
       Writeln('------------------------------------------');
-      Writeln('Salario Bruto  : R$ ', lSalarioBruto:0:2);
-      Writeln('Desconto (15%) : R$ ', lDesconto:0:2);
-      Writeln('Salario Liquido: R$ ', lSalarioLiquido:0:2);
+      Writeln(Format('Salario Bruto  : R$ %10.2f', [lSalarioBruto]));
+      Writeln(Format('Desconto (15%%) : R$ %10.2f', [lDesconto]));
+      Writeln(Format('Salario Liquido: R$ %10.2f', [lSalarioLiquido]));
       Writeln('------------------------------------------');
-
-      Writeln('Pressione Enter para sair...');
+      Writeln('');
+      Writeln('Pressione Enter para voltar ao menu...');
 
       Readln;
 
