@@ -60,7 +60,7 @@ Entrada: 576
 - 5 nota(s) de R$ 100,00
 - 1 nota(s) de R$ 50,00
 - 1 nota(s) de R$ 20,00...
-
+</details>
 <details>
 <summary><b>🚗 05. Conversor de Placas (Brasil ↔ Mercosul)</b></summary>
 <br>
