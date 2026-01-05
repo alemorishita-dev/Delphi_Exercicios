@@ -1,0 +1,14 @@
+# Arquivos compilados e temporários do Delphi
+*.dcu
+*.identcache
+*.local
+*.~*
+*.stat
+*.tvsconfig
+*.dsk
+
+# Executáveis (Pasta de Output)
+__recovery/
+bin/
+Win32/
+Win64/
