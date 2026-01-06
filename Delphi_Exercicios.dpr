@@ -60,7 +60,7 @@ begin
       ExecutarExercicio(lNumeroExercicio);
 
       Writeln;
-      Writeln('Pressione ENTER para continuar...');
+      Writeln('Pressione Enter para voltar ao menu...');
       Readln;
 
     until False;

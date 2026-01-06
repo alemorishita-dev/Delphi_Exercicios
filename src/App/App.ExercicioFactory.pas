@@ -6,7 +6,11 @@ uses
   System.SysUtils,
   Domain.IExercicio,
   Domain.Exercicio1,
-  Domain.Exercicio2;
+  Domain.Exercicio2,
+  Domain.Exercicio3,
+  Domain.Exercicio4,
+  Domain.Exercicio5,
+  Domain.Exercicio6;
 type
   TExercicioFactory = class
   public
@@ -19,21 +23,28 @@ implementation
 { TExercicioFactory }
 
 class function TExercicioFactory.Criar(const pNumeroExercicio: string): IExercicio;
+var
+  lOpcao: Integer;
 begin
   Result := nil;
 
-  if pNumeroExercicio = '1' then
-    Result := TExercicio1.Create
-  else if pNumeroExercicio = '2' then
-    Result := TExercicio2.Create ();
+  lOpcao := StrToIntDef(pNumeroExercicio, -1);
 
-  if not Assigned(Result) then
-    raise Exception.CreateFmt('Exercício "%s" não encontrado na Fábrica.', [pNumeroExercicio]);
+  case lOpcao of
+    1: Result := TExercicio1.Create;
+    2: Result := TExercicio2.Create;
+    3: Result := TExercicio3.Create;
+    4: Result := TExercicio4.Create;
+    5: Result := TExercicio5.Create;
+    6: Result := TExercicio5.Create;
+  else
+    raise Exception.CreateFmt('Exercicio "%s" nao encontrado na Fabrica.', [pNumeroExercicio]);
+  end;
 end;
 
 class function TExercicioFactory.Listar: TArray<string>;
 begin
-  Result := ['1', '2'];
+  Result := ['1', '2', '3', '4', '5', '6'];
 end;
 
 end.

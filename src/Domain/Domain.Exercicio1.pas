@@ -4,8 +4,7 @@ interface
 
 uses
   System.SysUtils,
-  Domain.ExercicioBase,
-  Domain.IExercicio;
+  Domain.ExercicioBase;
 
 type
   TExercicio1 = class(TExercicioBase)
@@ -45,6 +44,8 @@ var
 begin
   try
     try
+      LimparTela;
+
       lHorasPorDia     := LerInteiro('Digite a quantidade de horas trabalhadas por dia: ');
       lValorHora       := LerDouble('Digite o valor da hora trabalhada: R$ ');
       lDiasTrabalhados := LerInteiro('Digite a quantidade de dias trabalhados no mes: ');
@@ -59,14 +60,10 @@ begin
       Writeln(Format('Salario Liquido: R$ %10.2f', [lSalarioLiquido]));
       Writeln('------------------------------------------');
       Writeln('');
-      Writeln('Pressione Enter para voltar ao menu...');
-
-      Readln;
 
     except
     on E: EInOutError do
       raise Exception.Create('Erro na entrada de dados. Digite apenas numeros.');
-
     end;
 
   except

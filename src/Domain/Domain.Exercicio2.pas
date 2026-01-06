@@ -4,8 +4,7 @@ interface
 
 uses
   System.SysUtils,
-  Domain.ExercicioBase,
-  Domain.IExercicio;
+  Domain.ExercicioBase;
 
 type
   TExercicio2 = class(TExercicioBase)
@@ -37,9 +36,6 @@ begin
       Writeln('Valores aceitos')
     else
       Writeln('Valores nao aceitos');
-
-    Writeln('Pressione Enter para sair...');
-    Readln;
 
   except
     on E: Exception do
