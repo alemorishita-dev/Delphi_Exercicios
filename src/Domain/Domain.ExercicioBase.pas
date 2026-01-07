@@ -12,6 +12,7 @@ type
   protected
     function LerInteiro(const Prompt: string): Integer;
     function LerDouble(const Prompt: string): Double;
+    function LerString(const pMensagem: string): string;
     procedure LimparTela;
 
     procedure Executar; virtual; abstract;
@@ -35,6 +36,13 @@ begin
         Writeln('Entrada invalida! Digite um numero inteiro.');
     end;
   end;
+end;
+
+function TExercicioBase.LerString(const pMensagem: string): string;
+begin
+  Write(pMensagem);
+  Readln(Result);
+  Result := Result.Trim;
 end;
 
 function TExercicioBase.LerDouble(const Prompt: string): Double;

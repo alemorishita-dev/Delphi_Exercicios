@@ -10,7 +10,9 @@ uses
   Domain.Exercicio3,
   Domain.Exercicio4,
   Domain.Exercicio5,
-  Domain.Exercicio6;
+  Domain.Exercicio6,
+  Domain.Exercicio7,
+  Domain.Exercicio8;
 type
   TExercicioFactory = class
   public
@@ -37,6 +39,8 @@ begin
     4: Result := TExercicio4.Create;
     5: Result := TExercicio5.Create;
     6: Result := TExercicio5.Create;
+    7: Result := TExercicio7.Create;
+    8: Result := TExercicio8.Create;
   else
     raise Exception.CreateFmt('Exercicio "%s" nao encontrado na Fabrica.', [pNumeroExercicio]);
   end;
@@ -44,7 +48,7 @@ end;
 
 class function TExercicioFactory.Listar: TArray<string>;
 begin
-  Result := ['1', '2', '3', '4', '5', '6'];
+  Result := ['1', '2', '3', '4', '5', '6', '7', '8'];
 end;
 
 end.

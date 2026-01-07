@@ -4,6 +4,22 @@ Repositório dedicado à resolução de desafios de algoritmos e fundamentos de 
 
 ---
 
+### 🚀 Principais Técnicas e Padrões Utilizados
+
+#### 1. Padrões de Projeto (Design Patterns)
+* **Factory Method:** Implementado na classe `TExercicioFactory`. Esta técnica centraliza a criação de objetos, permitindo que o programa principal peça um exercício pelo "número" sem saber qual classe específica está sendo instanciada.
+* **Strategy (via Interface):** Ao utilizarmos `IExercicio`, tratamos cada algoritmo como uma estratégia permutável. O código que executa o exercício não se importa se é o 1 ou o 5, apenas que ele segue o "contrato" de execução.
+
+#### 2. Programação Orientada a Objetos (OOP) Avançada
+* **Abstração e Herança:** Criamos a `TExercicioBase` para evitar repetição de código. Ela contém ferramentas comuns (como `LerDouble`, `LerInteiro` e `LimparTela`) que todos os exercícios herdam.
+* **Polimorfismo:** Utilizamos métodos `virtual`, `abstract` e `override`. Isso permite que a classe base defina a estrutura, mas cada "filho" execute a sua lógica específica ao chamar o método `Executar`.
+* **Interfaces:** Implementamos o uso de interfaces para garantir o desacoplamento total e beneficiar da gestão automática de memória do Delphi.
+
+#### 3. Gestão de Memória e Ciclo de Vida
+* **ARC (Automatic Reference Counting):** Ao herdar de `TInterfacedObject`, delegamos ao Delphi a tarefa de destruir os objetos. Assim que a referência da interface sai de escopo, a memória é liberada automaticamente, eliminando *memory leaks*.
+
+---
+
 ## 🚀 Desafios Propostos
 
 <details>
